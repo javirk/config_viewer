@@ -1,0 +1,29 @@
+{# templates/show.html #}
+<html>
+    <head>
+        <title>File details</title>
+
+    </head>
+    <body>
+        <a href="{{ url_for('index') }}">Back to index</a>
+
+        {% if not file %}
+            <p>Could not find file details</p>
+        {% else %}
+            <p>File name: {{file.name}}</p>
+
+            <ul>
+            {% for key, value in file.data.items() recursive %}
+                <li>
+                {% if value is string or value is integer or value is boolean or value is float %}
+                    <b>{{ key }}:</b> {{ value }}
+                {% else %}
+                    {{ key }}
+                    <ul>{{ loop(value.items()) }}</ul>
+                {% endif %}
+                </li>
+            {% endfor %}
+            </ul>
+        {% endif %}
+    </body>
+</html>

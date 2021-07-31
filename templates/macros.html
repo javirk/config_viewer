@@ -1,0 +1,44 @@
+{# templates/macros.html #}
+{# Render file form.
+
+Arguments:
+    - subform: Form object to render
+    - index: Index of the form. For proper subforms rendered in the form loop,
+             this should match `loop.index0`, and for the template it should be
+             '_'
+#}
+{%- macro render_file_form(subform, index) %}
+    <div id="file-{{ index }}-form" class="{% if index != '_' %}subform{% else %}is-hidden{% endif %}" data-index="{{ index }}">
+        <div>
+            {{ subform.folder_name.label }}
+            {{ subform.folder_name }}
+        </div>
+        <div>
+            {{ subform.file_name.label }}
+            {{ subform.file_name }}
+        </div>
+
+        <a class="remove" href="#">Remove</a>
+        <hr/>
+    </div>
+{%- endmacro %}
+
+{%- macro render_file_data(file) %}
+    <div data-index="{{ file.id }}" class="flex-child">
+        <p>File name: {{file.name}}</p>
+
+        <ul>
+
+        {% for key, value in file.data.items() recursive %}
+            <li>
+            {% if value is string or value is integer or value is boolean or value is float %}
+                <b>{{ key }}:</b> {{ value }}
+            {% else %}
+                {{ key }}
+                <ul>{{ loop(value.items()) }}</ul>
+            {% endif %}
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+{%- endmacro %}
