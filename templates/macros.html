@@ -22,23 +22,3 @@ Arguments:
         <hr/>
     </div>
 {%- endmacro %}
-
-{%- macro render_file_data(file) %}
-    <div data-index="{{ file.id }}" class="flex-child">
-        <p>File name: {{file.name}}</p>
-
-        <ul>
-
-        {% for key, value in file.data.items() recursive %}
-            <li>
-            {% if value is string or value is integer or value is boolean or value is float %}
-                <b>{{ key }}:</b> {{ value }}
-            {% else %}
-                {{ key }}
-                <ul>{{ loop(value.items()) }}</ul>
-            {% endif %}
-            </li>
-        {% endfor %}
-        </ul>
-    </div>
-{%- endmacro %}

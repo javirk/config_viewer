@@ -21,7 +21,7 @@ def validate_filename():
     return _validate_filename
 
 class FileForm(Form):
-    folder_name = StringField('Container')
+    folder_name = StringField('Folder')
     file_name = StringField('Filename', validators=[validate_filename()])
 
 

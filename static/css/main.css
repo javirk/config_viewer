@@ -1,3 +1,7 @@
+.is-hidden {
+    display: none;
+}
+
 .flex-container {
     display: flex;
 }
@@ -10,3 +14,12 @@
 .flex-child:first-child {
     margin-right: 20px;
 } 
+
+.flex-child ul{
+	list-style-type: none;
+	line-height: 1.5;
+}
+
+#hidden.flex-child {
+	display: none;
+}

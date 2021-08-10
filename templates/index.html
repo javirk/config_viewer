@@ -136,40 +136,57 @@
               $('a#add').on('click', function(e) {
                 e.preventDefault()
 
-                var url = $(this).attr('file-id');
+                var file_id = $(this).attr('file-id');
 
                 $.ajax({
                     type:"GET",
                     dataType: "json",
-                    data:{'file_id':url},
+                    data: {'file_id': file_id},
                     url: "/add",
                     success: function(data){
+                        
+                        //data = JSON.stringify(data);
                         console.log(data);
-                        data = JSON.stringify(data)
-                        $(".data_test").html(data);
+
+                        var $div_name = "flex-child" + file_id;
+                        var $child = $("#hidden.flex-child").clone();
+                        var $data_ul = json_tree(data);
+                        $child.attr('id', file_id);
+                        $child.html($data_ul);
+
+
+                        $(".flex-container").append($child);
                     }
                 })
                 return false;
               });   
             });
 
-
+            function json_tree(object){
+                    var json="<ul>";
+                    for(prop in object){
+                        var value = object[prop];
+                        switch (typeof(value)){
+                            case "object":
+                                var token = Math.random().toString(36).substr(2,16);
+                                json += "<li><b>"+prop+"</b>: <div id='"+token+"' class='collapse'>"+json_tree(value)+"</div></li>";
+                            break;
+                            default:
+                            json += "<li class='value'><b>"+prop+"</b>: "+value+"</li>";
+                        }
+                    }
+                    return json+"</ul>";
+            }
 
             $(document).ready(function() {
                 $('#add').click(addForm);
                 $('.remove').click(removeForm);
             });
         </script>
-
-        <style>
-            .is-hidden {
-                display: none;
-            }
-        </style>
     </head>
 
     <body>
-        <a id="add" href="#">Add File</a>
+        <a id="add" href="#">Add Folder</a>
         <hr/>
 
         {# Show all subforms #}
@@ -182,7 +199,7 @@
                 {% endfor %}
             </div>
 
-            <button type="submit">Send</button>
+            <button type="submit">Add</button>
         </form>
 
 
@@ -198,11 +215,6 @@
         {% for file in files %}
             <p><a href="{{ url_for('show_file', file_id=file.id) }}">File {{ file.folder }}</a> - <a href=# id=add file-id={{ file.id }}><button class='btn btn-default'>Add</button></a></p>
         {% endfor %}
-        <div class="data_test"></div>
-        <div class="flex-container">
-            {% for file in show_files %}
-                {{ macros.render_file_data(file) }}
-            {% endfor %}
-        </div>
+        <div class="flex-container"><div id='hidden' class='flex-child'></div></div>
     </body>
 </html>
