@@ -20,7 +20,7 @@ def validate_filename():
 
     return _validate_filename
 
-class FileForm(Form):
+class FileForm(FlaskForm):
     folder_name = StringField('Folder')
     file_name = StringField('Filename', validators=[validate_filename()])
 
@@ -74,27 +74,24 @@ show_files = Files()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
-    form = MainForm()
-    template_form = FileForm(prefix='files-_-')
+    # form = MainForm()
+    form = FileForm(prefix='files-_-')
 
     if form.validate_on_submit():
-        for file_path in form.files.data:
-            if file_path['folder_name'] != '':
-                for root, dirs, files in os.walk(file_path['folder_name']):
-                    for file in files:
-                        if file.endswith('.yml'):
-                            all_files.append(os.path.join(root, file))
-
-            if file_path['file_name'] != '':
-                # Create file
-                all_files.append(file_path['file_name'])
+        folder_name = form.folder_name.data
+        file_name = form.file_name.data  # TODO: Use the filename field
+        if folder_name is not None:
+            # TODO: Improve with Gonzalo's suggestion
+            for root, dirs, files in os.walk(folder_name):
+                for file in files:
+                    if file.endswith('.yml'):
+                        all_files.append(os.path.join(root, file))
 
     return render_template(
         'index.html',
         form=form,
         files=all_files,
-        show_files=show_files,
-        _template=template_form
+        show_files=show_files
     )
 
 @app.route('/show/<file_id>', methods=['GET'])

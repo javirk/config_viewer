@@ -1,25 +1,63 @@
-.is-hidden {
+body {
+    padding: 0;
+    margin: 0;
+    background: #f8f9fa
+}
+
+.navbar {
+    background: #315BE8;
+}
+
+.navbar-brand {
+    color: #fff;
+    cursor: pointer;
+    margin-left: 1em;
+}
+
+.side-icon {
+    padding-left: 1em !important;
+}
+
+.side-icon:hover {
+    color: #000;
+}
+
+.navbar-collapse {
+    justify-content: flex-end;
+}
+    
+.sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 48px 0 0;
+    box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+}
+
+.sidebar {
+    color: #2470dc;
+}   
+
+.sidebar .side-icon {
+    font-weight: 500;
+    color: #333;
+}
+
+.side-form-li {
+    margin-bottom: 1em;
+}
+
+.form-check-label {
+    color: black;
+}
+
+
+#configurations ul {
+    list-style-type: none;
+}
+
+#configurations #hidden {
     display: none;
-}
-
-.flex-container {
-    display: flex;
-}
-
-.flex-child {
-    flex: 1;
-    border: 2px solid yellow;
-}  
-
-.flex-child:first-child {
-    margin-right: 20px;
-} 
-
-.flex-child ul{
-	list-style-type: none;
-	line-height: 1.5;
-}
-
-#hidden.flex-child {
-	display: none;
 }
