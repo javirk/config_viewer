@@ -139,7 +139,7 @@ $(function() {
             success: function(data){
                 var $child = $("#hidden").clone();
                 var $data_ul = json_tree(data, file_name);
-                $data_ul = "<p><b>" + file_name + "</b></p>"  
+                $data_ul = "<p><b>" + file_name + "</b></p>" + $data_ul;
 
                 $child.attr('id', 'conf_' + file_id);
                 $child.html($data_ul);
