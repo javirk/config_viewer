@@ -128,7 +128,7 @@ $(function() {
         var file_name = $(this).attr('short-filename');
         if ($(":checkbox:checked").length > 3) {
             this.checked = false
-            alert('Only three at the same time, please.')
+            alert('Only three at the same time, please :)')
             return false
         }
         $.ajax({
