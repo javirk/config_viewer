@@ -1,7 +1,8 @@
 body {
     padding: 0;
     margin: 0;
-    background: #f8f9fa
+    background: #f8f9fa;
+    font-family: Roboto, sans-serif;
 }
 
 .navbar {
@@ -34,6 +35,7 @@ body {
     z-index: 100;
     padding: 48px 0 0;
     box-shadow: inset -1px 0 0 rgb(0 0 0 / 10%);
+    font-size: 13px;
 }
 
 .sidebar {

@@ -72,7 +72,7 @@ class Files:
 
     def sort(self):
         self.files = sorted(self.files, key=lambda x: x.folder)
-        for i, file in enumerate(self.files):
+        for i, file in enumerate(self.files):  # This is to fix how the sorted messes up the ids
             file.id = i
 
 all_files = Files()
