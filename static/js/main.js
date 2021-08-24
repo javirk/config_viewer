@@ -137,6 +137,7 @@ $(function() {
             data: {'file_id': file_id},
             url: "/add",
             success: function(data){
+                console.log(data);
                 var $child = $("#hidden").clone();
                 var $data_ul = json_tree(data, file_name);
                 $data_ul = "<p><b>" + file_name + "</b></p>" + $data_ul;
