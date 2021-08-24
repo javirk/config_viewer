@@ -37,6 +37,7 @@ class MainForm(FlaskForm):
 class File:
     def __init__(self, id, file_path):
         self.folder = '/'.join(file_path.split('/')[:-1])
+        self.short_folder = '/'.join(file_path.split('/')[-2:])
         self.name = file_path.split('/')[-1]
         self.path = file_path
         self.data = read_config(file_path)
