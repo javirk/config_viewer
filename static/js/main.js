@@ -157,7 +157,7 @@ $(function() {
 });
 
 function json_tree(object, file_name){
-    var json = "<b>" + file_name + "</b>" + "<ul class='flex-column'>";
+    var json = "<p><b>" + file_name + "</b></p>" + "<ul class='flex-column'>";
     for(prop in object){
         var value = object[prop];
         switch (typeof(value)){
