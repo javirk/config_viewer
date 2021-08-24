@@ -72,6 +72,8 @@ class Files:
 
     def sort(self):
         self.files = sorted(self.files, key=lambda x: x.folder)
+        for i, file in self.files:
+            file.id = i
 
 all_files = Files()
 show_files = Files()
