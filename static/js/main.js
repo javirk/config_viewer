@@ -139,6 +139,8 @@ $(function() {
             success: function(data){
                 var $child = $("#hidden").clone();
                 var $data_ul = json_tree(data, file_name);
+                $data_ul = "<p><b>" + file_name + "</b></p>"  
+
                 $child.attr('id', 'conf_' + file_id);
                 $child.html($data_ul);
 
@@ -156,8 +158,8 @@ $(function() {
   });   
 });
 
-function json_tree(object, file_name){
-    var json = "<p><b>" + file_name + "</b></p>" + "<ul class='flex-column'>";
+function json_tree(object){
+    var json = "<ul class='flex-column'>";
     for(prop in object){
         var value = object[prop];
         switch (typeof(value)){
