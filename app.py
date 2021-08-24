@@ -70,6 +70,9 @@ class Files:
         except UnboundLocalError:
             pass
 
+    def sort(self):
+        self.files = sorted(self.files, key=lambda x: x.folder)
+
 all_files = Files()
 show_files = Files()
 
@@ -87,6 +90,8 @@ def index():
                 for file in files:
                     if file.endswith('.yml'):
                         all_files.append(os.path.join(root, file))
+
+    all_files.sort()
 
     return render_template(
         'index.html',
