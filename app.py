@@ -75,12 +75,16 @@ class Files:
         for i, file in enumerate(self.files):  # This is to fix how the sorted messes up the ids
             file.id = i
 
+    def reset(self):
+        self.files = []
+
 all_files = Files()
 show_files = Files()
 
 @app.route('/', methods=['GET', 'POST'])
 def index():
     # form = MainForm()
+    all_files.reset()
     form = FileForm(prefix='files-_-')
 
     if form.validate_on_submit():

@@ -1,4 +1,5 @@
 const ID_RE = /(-)_(-)/;
+var dict_files = {}
 
 /**
  * Replace the template index of an element (-_-) with the
@@ -137,7 +138,7 @@ $(function() {
             data: {'file_id': file_id},
             url: "/add",
             success: function(data){
-                console.log(data);
+                dict_files[file_id] = data;
                 var $child = $("#hidden").clone();
                 var $data_ul = json_tree(data, file_name);
                 $data_ul = "<p><b>" + file_name + "</b></p>" + $data_ul;
@@ -150,7 +151,7 @@ $(function() {
         })
     } else {
         var file_id = $(this).attr('file-id');
-        console.log(file_id)
+        delete dict_files[file_id];
 
         var $child = $(file_id);
         document.getElementById('conf_' + file_id).remove();
@@ -174,6 +175,11 @@ function json_tree(object){
     }
     return json+"</ul>";
 }
+
+function compare_json_dict(){
+    for 
+}
+
 
 $(document).ready(function() {
     $('#add').click(addForm);
