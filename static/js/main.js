@@ -176,9 +176,9 @@ function json_tree(object){
     return json+"</ul>";
 }
 
-function compare_json_dict(){
-    for 
-}
+//function compare_json_dict(){
+//    for
+//}
 
 
 $(document).ready(function() {
